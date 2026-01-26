@@ -25,15 +25,15 @@ const Contact = () => {
 
     try {
       await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_q8xyo7h',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_olaq9fj',
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_email: 'ermo.artem@gmail.com',
         },
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '3BITopua9qO4DaMSw'
       );
 
       alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
