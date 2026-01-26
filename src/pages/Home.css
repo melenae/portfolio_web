@@ -1,0 +1,18 @@
+.home {
+  padding-top: 0;
+}
+
+.home > section {
+  margin-bottom: 100px;
+}
+
+.home > section:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .home > section {
+    margin-bottom: 60px;
+  }
+}
+

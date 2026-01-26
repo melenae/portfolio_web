@@ -1,0 +1,154 @@
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import contactimg from '../assets/contactimg.png';
+import './Contact.css';
+
+const Contact = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'ermo.artem@gmail.com',
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
+      );
+
+      alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
+      setFormData({ name: '', email: '', message: '' });
+      setIsFormOpen(false);
+    } catch (error) {
+      console.error('Ошибка отправки:', error);
+      alert('Произошла ошибка при отправке сообщения. Попробуйте позже или свяжитесь со мной напрямую.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section className="contact" id="contact">
+      <div className="contact-container">
+        <div 
+          className="contact-image"
+          style={{
+            backgroundImage: `url(${contactimg})`,
+          }}
+        >
+        </div>
+        <div className="contact-content">
+          <div className="contact-info-section">
+            <div className="contact-group">
+              <div className="contact-item"><a href="tel:+4915225149209">+49 15225149209</a></div>
+              <div className="contact-item"><a href="mailto:ermo.artem@gmail.com">ermo.artem@gmail.com</a></div>
+            </div>
+            <div className="contact-group">
+              <a
+                href="https://www.instagram.com/art_youmorist_14/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-item contact-link"
+              >
+                INSTAGRAM
+              </a>
+              <a
+                href="https://wa.me/79169419004"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-item contact-link"
+              >
+                WHATSAPP
+              </a>
+            </div>
+          </div>
+
+          <div className="contact-divider"></div>
+
+          <div className="contact-form-section">
+            <button
+              className="contact-toggle-btn"
+              onClick={() => setIsFormOpen(!isFormOpen)}
+            >
+              Написать сообщение +
+            </button>
+
+            {isFormOpen && (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Имя"
+                    className="form-input"
+                  />
+                  <div className="form-line"></div>
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="Email"
+                    className="form-input"
+                  />
+                  <div className="form-line"></div>
+                </div>
+                <div className="form-group">
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Ваш вопрос"
+                    className="form-input"
+                    rows="4"
+                  ></textarea>
+                  <div className="form-line"></div>
+                </div>
+                <button 
+                  type="submit" 
+                  className="submit-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Отправка...' : 'Отправить'}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+        <h2 className="contact-title">Обратная связь</h2>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
