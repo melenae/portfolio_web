@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProjectById } from '../data/projects';
+import arrowIcon from '../assets/arrow.svg';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -18,65 +19,190 @@ const ProjectDetail = () => {
     }, 100);
   };
 
-  const handleHome = () => {
-    navigate('/');
-  };
-
   if (!project) {
     return (
-      <div className="project-detail">
+      <div className="project-detail" style={{ backgroundColor: '#000', color: '#fff' }}>
         <div className="container">
           <h2>Проект не найден</h2>
-          <button onClick={handleHome} className="back-link">
-            Вернуться на главную
+          <button onClick={handleBack} className="back-btn">
+            <img src={arrowIcon} alt="arrow" /> На главную
           </button>
         </div>
       </div>
     );
   }
 
+  const textColor = project.textColor || (project.bgColor === '#E3FF04' || project.bgColor === '#ffffff' ? '#000' : '#fff');
+
+  // Функция для определения, нужна ли граница для карточки цвета
+  const getColorCardStyle = (colorCode) => {
+    const normalizedBgColor = project.bgColor.toUpperCase().trim();
+    const normalizedColorCode = colorCode.toUpperCase().trim();
+    
+    // Проверяем, совпадает ли цвет карточки с фоном
+    if (normalizedColorCode === normalizedBgColor) {
+      // Определяем контрастный цвет для границы
+      const borderColor = textColor === '#000000' || textColor === '#000' ? '#000000' : '#FFFFFF';
+      return {
+        border: '1.5px solid',
+        borderColor: borderColor,
+      };
+    }
+    return {};
+  };
+
   return (
     <div
       className="project-detail"
-      style={{ backgroundColor: project.bgColor }}
+      style={{ backgroundColor: project.bgColor, color: textColor }}
     >
-      <div className="container">
-        <button onClick={handleBack} className="back-link">
-          ← Назад к проектам
+      {/* Header Section */}
+      <section className="project-header">
+        <button onClick={handleBack} className="back-btn">
+          <img src={arrowIcon} alt="arrow" /> На главную
         </button>
-        <div className="project-detail-content">
-          <div className="project-detail-header">
-            <h1>{project.title}</h1>
-            <p className="project-intro">{project.description}</p>
+        <div className="header-content">
+          <div className="header-main">
+            {project.logo && (
+              <div className="project-logo">{project.logo}</div>
+            )}
+            <div className="header-text">
+              <h1 className="project-title">О проекте</h1>
+              <p className="project-description">{project.fullDescription}</p>
+            </div>
           </div>
-          {project.image && (
-            <div className="project-detail-image">
-              <img src={project.image} alt={project.title} />
+          {project.concept && (
+            <div className="concept-section">
+              <h3 className="concept-subtitle">Концепция дизайна</h3>
+              <p className="concept-text">{project.concept}</p>
             </div>
           )}
-          <div className="project-detail-body">
-            <div className="project-description">
-              <h2>О проекте</h2>
-              <p>{project.fullDescription}</p>
+        </div>
+      </section>
+
+      <div className="section-divider"></div>
+
+      {/* Colors Section */}
+      {project.colors && project.colors.length > 0 && (
+        <>
+          <section className="project-section">
+            <div className="section-header">
+              <h2 className="section-title">Цвета</h2>
+              <span className="section-number">01</span>
             </div>
-            {project.technologies && project.technologies.length > 0 && (
-              <div className="project-technologies">
-                <h2>Технологии</h2>
-                <div className="technologies-list">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
+            <div className="section-content">
+              <h3 className="section-subtitle">цвета</h3>
+              <p className="section-text">{project.colorsDescription}</p>
+            </div>
+            <div className="colors-grid">
+              {project.colors.map((color, index) => (
+                <div key={index} className="color-card">
+                  <div 
+                    className="color-swatch" 
+                    style={{ 
+                      backgroundColor: color.code,
+                      ...getColorCardStyle(color.code)
+                    }}
+                  ></div>
+                  <div className="color-code">{color.code}</div>
                 </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider"></div>
+        </>
+      )}
+
+      {/* Fonts Section */}
+      {project.fonts && project.fonts.length > 0 && (
+        <>
+          <section className="project-section">
+            <div className="section-header">
+              <h2 className="section-title">Шрифты</h2>
+              <span className="section-number">02</span>
+            </div>
+            <div className="section-content">
+              <h3 className="section-subtitle">шрифты</h3>
+              <p className="section-text">{project.fontsDescription}</p>
+            </div>
+            <div className="fonts-container">
+              {project.fonts.map((font, index) => (
+                <div key={index} className="font-group">
+                  <div className="font-info">
+                    <h4 className="font-name">{font.name}</h4>
+                    <div className="font-examples">
+                      <p className="font-example">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</p>
+                      <p className="font-example">0 1 2 3 4 5 6 7 8 9</p>
+                      <p className="font-example">! # @ % & * ? / , .</p>
+                    </div>
+                  </div>
+                  <div className="font-card" style={{ backgroundColor: font.cardBg || '#0A507A' }}>
+                    <p className="font-card-top">for Headers and Body text</p>
+                    <div className="font-card-label">{font.label}</div>
+                    <p className="font-card-name">{font.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider"></div>
+        </>
+      )}
+
+      {/* Web Design Section */}
+      {project.webDesign && (
+        <>
+          <section className="project-section">
+            <div className="section-header">
+              <h2 className="section-title">Веб Дизайн</h2>
+              <span className="section-number">03</span>
+            </div>
+            <div className="section-content">
+              <h3 className="section-subtitle">веб сайт</h3>
+              <p className="section-text">{project.webDesignDescription}</p>
+            </div>
+            {project.mockup && (
+              <div className="mockup-container">
+                <img src={project.mockup} alt="Mockup" className="mockup-image" />
               </div>
             )}
+            {project.prototypes && project.prototypes.length > 0 && (
+              <div className="prototypes-container">
+                {project.prototypes.map((prototype, index) => (
+                  <img key={index} src={prototype} alt={`Prototype ${index + 1}`} className="prototype-image" />
+                ))}
+              </div>
+            )}
+          </section>
+
+          <div className="section-divider"></div>
+        </>
+      )}
+
+      {/* Identity Section */}
+      {project.identity && (
+        <section className="project-section">
+          <div className="section-header">
+            <h2 className="section-title">Идентичность</h2>
+            <span className="section-number">04</span>
           </div>
-        </div>
-      </div>
+          <div className="section-content">
+            <h3 className="section-subtitle">брэндинг</h3>
+            <p className="section-text">{project.identityDescription}</p>
+          </div>
+          {project.identityImages && project.identityImages.length > 0 && (
+            <div className={`identity-images ${project.identityImages.length === 1 ? 'single' : project.identityImages.length === 3 ? 'three' : ''}`}>
+              {project.identityImages.map((img, index) => (
+                <img key={index} src={img} alt={`Identity ${index + 1}`} className="identity-image" />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 };
 
 export default ProjectDetail;
-

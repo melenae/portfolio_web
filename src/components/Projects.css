@@ -133,6 +133,12 @@
   line-height: 1.2;
 }
 
+/* Стили для h3 на главной странице */
+h3.project-title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
 .project-categories {
   display: flex;
   gap: 22px;
