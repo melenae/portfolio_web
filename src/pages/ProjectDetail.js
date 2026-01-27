@@ -130,17 +130,17 @@ const ProjectDetail = () => {
               {project.fonts.map((font, index) => (
                 <div key={index} className="font-group">
                   <div className="font-info">
-                    <h4 className="font-name">{font.name}</h4>
+                    <h4 className="font-name" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.name}</h4>
                     <div className="font-examples">
-                      <p className="font-example">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</p>
-                      <p className="font-example">0 1 2 3 4 5 6 7 8 9</p>
-                      <p className="font-example">! # @ % & * ? / , .</p>
+                      <p className="font-example" style={{ fontFamily: `'${font.name}', sans-serif` }}>Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</p>
+                      <p className="font-example" style={{ fontFamily: `'${font.name}', sans-serif` }}>0 1 2 3 4 5 6 7 8 9</p>
+                      <p className="font-example" style={{ fontFamily: `'${font.name}', sans-serif` }}>! # @ % & * ? / , .</p>
                     </div>
                   </div>
                   <div className="font-card" style={{ backgroundColor: font.cardBg || '#0A507A' }}>
                     <p className="font-card-top">for Headers and Body text</p>
-                    <div className="font-card-label">{font.label}</div>
-                    <p className="font-card-name">{font.name}</p>
+                    <div className="font-card-label" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.label}</div>
+                    <p className="font-card-name" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.name}</p>
                   </div>
                 </div>
               ))}
