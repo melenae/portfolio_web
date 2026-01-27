@@ -18,7 +18,6 @@ import prototypems from '../assets/prototypems.png';
 import imgms from '../assets/imgms.png';
 import img1ms from '../assets/img1ms.png';
 import errorms from '../assets/404ms.png';
-import colorsas from '../assets/colorsas.png';
 
 // Данные проектов - здесь вы можете добавить свои проекты
 export const projectsData = [
