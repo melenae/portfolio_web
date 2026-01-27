@@ -1,18 +1,39 @@
 .home {
   padding-top: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .home > section {
   margin-bottom: 100px;
+  width: 100%;
 }
 
 .home > section:last-child {
   margin-bottom: 0;
 }
 
+@media (max-width: 1200px) {
+  .home > section {
+    margin-bottom: 80px;
+  }
+}
+
 @media (max-width: 768px) {
   .home > section {
     margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home > section {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .home > section {
+    margin-bottom: 24px;
   }
 }
 

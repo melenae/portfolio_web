@@ -25,6 +25,7 @@
 .contact-content {
   padding: 24px;
   margin-top: 40px;
+  padding-bottom: 200px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -37,6 +38,10 @@
   gap: 40px;
   align-items: flex-end;
   margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.1s;
 }
 
 .contact-group {
@@ -110,12 +115,24 @@
 
 .contact-form {
   margin-top: 24px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   width: 100%;
   max-width: 500px;
   align-self: flex-start;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease, margin-bottom 0.4s ease;
+}
+
+.contact-form.open {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 24px;
+  margin-bottom: 40px;
 }
 
 .form-group {
@@ -135,6 +152,11 @@
   padding: 0;
   outline: none;
   resize: none;
+  transition: transform 0.3s ease;
+}
+
+.form-input:focus {
+  transform: translateX(5px);
 }
 
 .form-input::placeholder {
@@ -179,13 +201,62 @@
   color: #fff;
   margin: 0;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@media (max-width: 1400px) {
+  .contact-content {
+    padding-bottom: 180px;
+  }
 }
 
 @media (max-width: 1200px) {
+  .contact-container {
+    grid-template-columns: 35% 1fr;
+  }
+
   .contact-title {
     font-size: 72px;
     bottom: 48px;
     right: 48px;
+  }
+
+  .contact-content {
+    padding-bottom: 160px;
+  }
+}
+
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-image {
+    min-height: 400px;
+  }
+
+  .contact-content {
+    padding: 24px;
+    margin-top: 0;
+    padding-bottom: 140px;
+  }
+
+  .contact-info-section {
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+
+  .contact-group {
+    align-items: flex-start;
+  }
+
+  .contact-title {
+    font-size: 64px;
+    bottom: 40px;
+    right: 40px;
   }
 }
 
@@ -198,19 +269,153 @@
     min-height: 300px;
   }
 
+  .contact-content {
+    padding: 20px;
+    padding-bottom: 120px;
+  }
+
+  .contact-info-section {
+    margin-bottom: 32px;
+    gap: 32px;
+  }
+
+  .contact-group {
+    gap: 12px;
+  }
+
+  .contact-item {
+    font-size: 20px;
+  }
+
+  .contact-divider {
+    margin-top: 24px;
+  }
+
+  .contact-form-section {
+    margin-top: 24px;
+  }
+
+  .contact-toggle-btn {
+    font-size: 20px;
+  }
+
+  .contact-form {
+    margin-top: 20px;
+    gap: 20px;
+  }
+
+  .form-input {
+    font-size: 18px;
+  }
+
+  .submit-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
   .contact-title {
     font-size: 48px;
     bottom: 32px;
     right: 32px;
     position: relative;
     margin-top: 2rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    min-height: auto;
+  }
+
+  .contact-image {
+    min-height: 250px;
+  }
+
+  .contact-content {
+    padding: 12px;
+    padding-bottom: 80px;
+    margin-top: 0;
+  }
+
+  .contact-info-section {
+    margin-bottom: 24px;
+    gap: 20px;
+  }
+
+  .contact-group {
+    gap: 10px;
   }
 
   .contact-item {
-    font-size: 24px;
+    font-size: 16px;
+  }
+
+  .contact-divider {
+    margin-top: 20px;
+  }
+
+  .contact-form-section {
+    margin-top: 20px;
   }
 
   .contact-toggle-btn {
+    font-size: 16px;
+  }
+
+  .contact-form {
+    margin-top: 16px;
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  .form-input {
+    font-size: 14px;
+  }
+
+  .form-line {
+    margin-top: 6px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+    bottom: 20px;
+    right: 20px;
+    position: relative;
+    margin-top: 1.5rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 360px) {
+  .contact-content {
+    padding: 10px;
+    padding-bottom: 70px;
+  }
+
+  .contact-item {
+    font-size: 14px;
+  }
+
+  .contact-toggle-btn {
+    font-size: 14px;
+  }
+
+  .form-input {
+    font-size: 13px;
+  }
+
+  .submit-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .contact-title {
     font-size: 24px;
   }
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import contactimg from '../assets/contactimg.png';
+import { useTranslation } from '../hooks/useTranslation';
 import './Contact.css';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -36,12 +38,12 @@ const Contact = () => {
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '3BITopua9qO4DaMSw'
       );
 
-      alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
+      alert(t('contact.success'));
       setFormData({ name: '', email: '', message: '' });
       setIsFormOpen(false);
     } catch (error) {
       console.error('Ошибка отправки:', error);
-      alert('Произошла ошибка при отправке сообщения. Попробуйте позже или свяжитесь со мной напрямую.');
+      alert(t('contact.error'));
     } finally {
       setIsLoading(false);
     }
@@ -90,11 +92,10 @@ const Contact = () => {
               className="contact-toggle-btn"
               onClick={() => setIsFormOpen(!isFormOpen)}
             >
-              Написать сообщение +
+              {t('contact.writeMessage')}
             </button>
 
-            {isFormOpen && (
-              <form className="contact-form" onSubmit={handleSubmit}>
+            <form className={`contact-form ${isFormOpen ? 'open' : ''}`} onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
@@ -103,7 +104,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="Имя"
+                    placeholder={t('contact.name')}
                     className="form-input"
                   />
                   <div className="form-line"></div>
@@ -116,7 +117,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="Email"
+                    placeholder={t('contact.email')}
                     className="form-input"
                   />
                   <div className="form-line"></div>
@@ -128,7 +129,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="Ваш вопрос"
+                    placeholder={t('contact.message')}
                     className="form-input"
                     rows="4"
                   ></textarea>
@@ -139,13 +140,12 @@ const Contact = () => {
                   className="submit-btn"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Отправка...' : 'Отправить'}
+                  {isLoading ? t('contact.sending') : t('contact.send')}
                 </button>
               </form>
-            )}
           </div>
         </div>
-        <h2 className="contact-title">Обратная связь</h2>
+        <h2 className="contact-title">{t('contact.title')}</h2>
       </div>
     </section>
   );

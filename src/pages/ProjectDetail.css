@@ -376,6 +376,16 @@
   grid-column: 1 / -1;
 }
 
+@media (max-width: 1400px) {
+  .project-header {
+    padding: 120px 48px 0 48px;
+  }
+
+  .project-section {
+    padding: 100px 48px 64px 48px;
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     padding: 0 32px;
@@ -383,11 +393,18 @@
 
   .project-header {
     padding: 96px 32px 0 32px;
+  }
 
+  .header-content {
+    gap: 48px;
+  }
+
+  .header-main {
+    gap: 48px;
   }
 
   .project-section {
-    padding: 100px 32px 48px 32px;
+    padding: 80px 32px 48px 32px;
   }
 
   .section-title,
@@ -395,8 +412,57 @@
     font-size: 72px;
   }
 
-  .project-title {
-    font-size: 72px;
+  .project-detail .project-title {
+    font-size: 64px;
+  }
+
+  .section-content {
+    margin-bottom: 120px;
+  }
+
+  .color-swatch {
+    height: 450px;
+  }
+
+  .font-card {
+    min-height: 550px;
+  }
+}
+
+@media (max-width: 968px) {
+  .header-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .header-text {
+    justify-self: start;
+  }
+
+  .concept-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .section-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+
+  .section-text,
+  .section-subtitle {
+    justify-self: start;
+  }
+
+  .colors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .font-group {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
@@ -406,12 +472,16 @@
   }
 
   .project-header {
-    padding: 64px 24px 0 24px;
+    padding: 80px 24px 0 24px;
   }
 
   .back-btn {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 32px;
+  }
+
+  .header-content {
+    gap: 40px;
   }
 
   .header-main {
@@ -420,60 +490,302 @@
   }
 
   .project-logo {
-    font-size: 36px;
+    font-size: 32px;
   }
 
-  .project-title {
-    font-size: 48px;
-    margin-bottom: 32px;
+  .project-detail .project-title {
+    font-size: 40px;
+    margin-bottom: 24px;
   }
 
   .project-description {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .concept-section {
     grid-template-columns: 1fr;
-    padding-left: 0;
     gap: 16px;
   }
 
+  .concept-subtitle {
+    font-size: 20px;
+  }
+
+  .concept-text {
+    font-size: 18px;
+  }
+
   .project-section {
-    padding: 100px 24px 32px 24px;
+    padding: 60px 24px 32px 24px;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
   }
 
   .section-title,
   .section-number {
-    font-size: 48px;
+    font-size: 40px;
   }
 
   .section-content {
     grid-template-columns: 1fr;
-    margin-bottom: 64px;
+    margin-bottom: 48px;
+    gap: 24px;
   }
 
   .section-text,
   .section-subtitle,
   .concept-text,
   .concept-subtitle {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .colors-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 12px;
   }
 
-  .font-group {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .color-swatch {
+    height: 300px;
+  }
+
+  .color-code {
+    font-size: 14px;
+  }
+
+  .font-name {
+    font-size: 28px;
+  }
+
+  .font-example {
+    font-size: 16px;
+  }
+
+  .font-card {
+    min-height: 400px;
+    padding: 32px;
+  }
+
+  .font-card-top {
+    font-size: 18px;
   }
 
   .font-card-label {
-    font-size: 128px;
+    font-size: 96px;
+  }
+
+  .font-card-name {
+    font-size: 18px;
+  }
+
+  .mockup-container {
+    margin-top: 40px;
+    margin-bottom: 24px;
+  }
+
+  .prototypes-container {
+    gap: 24px;
   }
 
   .identity-images {
     grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-header {
+    padding: 50px 12px 0 12px;
+  }
+
+  .project-section {
+    padding: 40px 12px 20px 12px;
+  }
+
+  .back-btn {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .back-btn img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .header-content {
+    gap: 24px;
+  }
+
+  .header-main {
+    gap: 16px;
+  }
+
+  .project-logo {
+    font-size: 24px;
+  }
+
+  .project-detail .project-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .project-description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .concept-section {
+    gap: 12px;
+  }
+
+  .concept-subtitle {
+    font-size: 16px;
+  }
+
+  .concept-text {
+    font-size: 14px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .section-title,
+  .section-number {
+    font-size: 24px;
+  }
+
+  .section-content {
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  .section-text,
+  .section-subtitle {
+    font-size: 14px;
+  }
+
+  .colors-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .color-swatch {
+    height: 180px;
+  }
+
+  .color-code {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .font-info {
+    gap: 20px;
+  }
+
+  .font-name {
+    font-size: 20px;
+  }
+
+  .font-examples {
+    gap: 12px;
+  }
+
+  .font-example {
+    font-size: 12px;
+  }
+
+  .font-group {
+    gap: 24px;
+  }
+
+  .font-card {
+    min-height: 280px;
+    padding: 20px;
+  }
+
+  .font-card-top {
+    font-size: 14px;
+    top: 16px;
+  }
+
+  .font-card-label {
+    font-size: 56px;
+  }
+
+  .font-card-name {
+    font-size: 14px;
+    bottom: 16px;
+  }
+
+  .mockup-container {
+    margin-top: 32px;
+    margin-bottom: 20px;
+  }
+
+  .prototypes-container {
+    gap: 16px;
+  }
+
+  .identity-images {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-header {
+    padding: 40px 10px 0 10px;
+  }
+
+  .project-section {
+    padding: 32px 10px 16px 10px;
+  }
+
+  .back-btn {
+    font-size: 12px;
+  }
+
+  .project-logo {
+    font-size: 20px;
+  }
+
+  .project-detail .project-title {
+    font-size: 20px;
+  }
+
+  .project-description {
+    font-size: 13px;
+  }
+
+  .section-title,
+  .section-number {
+    font-size: 20px;
+  }
+
+  .section-text,
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  .color-swatch {
+    height: 150px;
+  }
+
+  .font-name {
+    font-size: 18px;
+  }
+
+  .font-card {
+    min-height: 240px;
+    padding: 16px;
+  }
+
+  .font-card-label {
+    font-size: 48px;
   }
 }

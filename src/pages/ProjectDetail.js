@@ -1,12 +1,14 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getProjectById } from '../data/projects';
+import { getProjectById, getProjectField } from '../data/projects';
+import { useTranslation } from '../hooks/useTranslation';
 import arrowIcon from '../assets/arrow.svg';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, language } = useTranslation();
   const project = getProjectById(id);
 
   const handleBack = () => {
@@ -23,9 +25,9 @@ const ProjectDetail = () => {
     return (
       <div className="project-detail" style={{ backgroundColor: '#000', color: '#fff' }}>
         <div className="container">
-          <h2>Проект не найден</h2>
+          <h2>Project not found</h2>
           <button onClick={handleBack} className="back-btn">
-            <img src={arrowIcon} alt="arrow" /> На главную
+            <img src={arrowIcon} alt="arrow" /> {t('header.back')}
           </button>
         </div>
       </div>
@@ -59,7 +61,7 @@ const ProjectDetail = () => {
       {/* Header Section */}
       <section className="project-header">
         <button onClick={handleBack} className="back-btn">
-          <img src={arrowIcon} alt="arrow" /> На главную
+          <img src={arrowIcon} alt="arrow" /> {t('header.back')}
         </button>
         <div className="header-content">
           <div className="header-main">
@@ -67,14 +69,14 @@ const ProjectDetail = () => {
               <div className="project-logo">{project.logo}</div>
             )}
             <div className="header-text">
-              <h1 className="project-title">О проекте</h1>
-              <p className="project-description">{project.fullDescription}</p>
+              <h1 className="project-title">{t('projectDetail.about')}</h1>
+              <p className="project-description">{getProjectField(project, 'fullDescription', language)}</p>
             </div>
           </div>
           {project.concept && (
             <div className="concept-section">
-              <h3 className="concept-subtitle">Концепция дизайна</h3>
-              <p className="concept-text">{project.concept}</p>
+              <h3 className="concept-subtitle">{t('projectDetail.concept')}</h3>
+              <p className="concept-text">{getProjectField(project, 'concept', language)}</p>
             </div>
           )}
         </div>
@@ -87,12 +89,12 @@ const ProjectDetail = () => {
         <>
           <section className="project-section">
             <div className="section-header">
-              <h2 className="section-title">Цвета</h2>
+              <h2 className="section-title">{t('projectDetail.colors')}</h2>
               <span className="section-number">01</span>
             </div>
             <div className="section-content">
-              <h3 className="section-subtitle">цвета</h3>
-              <p className="section-text">{project.colorsDescription}</p>
+              <h3 className="section-subtitle">{t('projectDetail.colorsLower')}</h3>
+              <p className="section-text">{getProjectField(project, 'colorsDescription', language)}</p>
             </div>
             <div className="colors-grid">
               {project.colors.map((color, index) => (
@@ -119,12 +121,12 @@ const ProjectDetail = () => {
         <>
           <section className="project-section">
             <div className="section-header">
-              <h2 className="section-title">Шрифты</h2>
+              <h2 className="section-title">{t('projectDetail.fonts')}</h2>
               <span className="section-number">02</span>
             </div>
             <div className="section-content">
-              <h3 className="section-subtitle">шрифты</h3>
-              <p className="section-text">{project.fontsDescription}</p>
+              <h3 className="section-subtitle">{t('projectDetail.fontsLower')}</h3>
+              <p className="section-text">{getProjectField(project, 'fontsDescription', language)}</p>
             </div>
             <div className="fonts-container">
               {project.fonts.map((font, index) => (
@@ -138,7 +140,7 @@ const ProjectDetail = () => {
                     </div>
                   </div>
                   <div className="font-card" style={{ backgroundColor: font.cardBg || '#0A507A' }}>
-                    <p className="font-card-top">for Headers and Body text</p>
+                    <p className="font-card-top">{t('projectDetail.forHeaders')}</p>
                     <div className="font-card-label" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.label}</div>
                     <p className="font-card-name" style={{ fontFamily: `'${font.name}', sans-serif` }}>{font.name}</p>
                   </div>
@@ -156,12 +158,12 @@ const ProjectDetail = () => {
         <>
           <section className="project-section">
             <div className="section-header">
-              <h2 className="section-title">Веб Дизайн</h2>
+              <h2 className="section-title">{t('projectDetail.webDesign')}</h2>
               <span className="section-number">03</span>
             </div>
             <div className="section-content">
-              <h3 className="section-subtitle">веб сайт</h3>
-              <p className="section-text">{project.webDesignDescription}</p>
+              <h3 className="section-subtitle">{t('projectDetail.website')}</h3>
+              <p className="section-text">{getProjectField(project, 'webDesignDescription', language)}</p>
             </div>
             {project.mockup && (
               <div className="mockup-container">
@@ -184,14 +186,14 @@ const ProjectDetail = () => {
       {/* Identity Section */}
       {project.identity && (
         <section className="project-section">
-          <div className="section-header">
-            <h2 className="section-title">Идентичность</h2>
-            <span className="section-number">04</span>
-          </div>
-          <div className="section-content">
-            <h3 className="section-subtitle">брэндинг</h3>
-            <p className="section-text">{project.identityDescription}</p>
-          </div>
+            <div className="section-header">
+              <h2 className="section-title">{t('projectDetail.identity')}</h2>
+              <span className="section-number">04</span>
+            </div>
+            <div className="section-content">
+              <h3 className="section-subtitle">{t('projectDetail.branding')}</h3>
+              <p className="section-text">{getProjectField(project, 'identityDescription', language)}</p>
+            </div>
           {project.identityImages && project.identityImages.length > 0 && (
             <div className={`identity-images ${project.identityImages.length === 1 ? 'single' : project.identityImages.length === 3 ? 'three' : ''}`}>
               {project.identityImages.map((img, index) => (

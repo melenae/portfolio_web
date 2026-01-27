@@ -16,6 +16,9 @@
   gap: 2rem;
   align-items: start;
   margin-bottom: 64px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .section-title {
@@ -27,6 +30,9 @@
   letter-spacing: -0.1em;
   margin: 0;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .projects-description {
@@ -38,6 +44,10 @@
   line-height: 1.6;
   margin: 0;
   max-width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .projects-content {
@@ -48,6 +58,10 @@
   display: flex;
   gap: 32px;
   align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .filter-btn {
@@ -60,8 +74,21 @@
   letter-spacing: -0.1em;
   cursor: pointer;
   padding: 0;
+  padding-bottom: 8px;
   transition: color 0.3s ease;
   text-transform: uppercase;
+  position: relative;
+}
+
+.filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
 }
 
 .filter-btn:hover {
@@ -70,6 +97,10 @@
 
 .filter-btn.active {
   color: #fff;
+}
+
+.filter-btn.active::after {
+  width: 100%;
 }
 
 .projects-divider {
@@ -93,7 +124,14 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.6s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.project-card.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-card:hover {
@@ -157,7 +195,17 @@ h3.project-title {
   white-space: nowrap;
 }
 
+@media (max-width: 1400px) {
+  .projects {
+    padding: 4rem 48px;
+  }
+}
+
 @media (max-width: 1200px) {
+  .projects {
+    padding: 4rem 32px;
+  }
+
   .section-title {
     font-size: 72px;
   }
@@ -166,11 +214,35 @@ h3.project-title {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  .projects-content {
+    margin-top: 48px;
+  }
+
+  .project-image {
+    height: 350px;
+  }
+}
+
+@media (max-width: 968px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 48px 0;
+  }
+
+  .projects-filters {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .filter-btn {
+    font-size: 32px;
+  }
 }
 
 @media (max-width: 768px) {
   .projects {
-    padding: 4rem 24px;
+    padding: 3rem 24px;
   }
 
   .section-title {
@@ -181,21 +253,145 @@ h3.project-title {
     font-size: 18px;
   }
 
+  .projects-header {
+    margin-bottom: 48px;
+  }
+
+  .projects-content {
+    margin-top: 40px;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 56px 0;
+    gap: 40px 0;
+    margin-top: 32px;
   }
 
   .projects-filters {
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 16px;
   }
 
   .filter-btn {
-    font-size: 32px;
+    font-size: 28px;
+  }
+
+  .projects-divider {
+    margin-top: 32px;
+  }
+
+  .project-image {
+    height: 300px;
+  }
+
+  .project-info {
+    margin-top: 32px;
   }
 
   .project-title {
+    font-size: 28px;
+  }
+
+  .project-categories {
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .project-category {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding: 2rem 12px;
+  }
+
+  .section-title {
     font-size: 32px;
+  }
+
+  .projects-description {
+    font-size: 14px;
+  }
+
+  .projects-header {
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  .projects-content {
+    margin-top: 32px;
+  }
+
+  .projects-filters {
+    gap: 12px;
+  }
+
+  .filter-btn {
+    font-size: 20px;
+  }
+
+  .projects-divider {
+    margin-top: 24px;
+  }
+
+  .projects-grid {
+    gap: 32px 0;
+    margin-top: 24px;
+  }
+
+  .project-image {
+    height: 200px;
+  }
+
+  .project-info {
+    margin-top: 20px;
+  }
+
+  .project-title {
+    font-size: 20px;
+  }
+
+  .project-categories {
+    margin-top: 16px;
+    gap: 10px;
+  }
+
+  .project-category {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .projects {
+    padding: 1.5rem 10px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .projects-description {
+    font-size: 13px;
+  }
+
+  .filter-btn {
+    font-size: 18px;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .project-title {
+    font-size: 18px;
+  }
+
+  .project-category {
+    font-size: 11px;
+    padding: 5px 8px;
   }
 }
