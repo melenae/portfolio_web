@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProjectById, getProjectField } from '../data/projects';
 import { useTranslation } from '../hooks/useTranslation';
@@ -10,6 +10,11 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { t, language } = useTranslation();
   const project = getProjectById(id);
+
+  // Прокручиваем страницу вверх при загрузке
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   const handleBack = () => {
     navigate('/');

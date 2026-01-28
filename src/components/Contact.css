@@ -319,7 +319,7 @@
     right: 32px;
     position: relative;
     margin-top: 2rem;
-    text-align: left;
+    text-align: right;
   }
 }
 
@@ -388,7 +388,7 @@
     right: 20px;
     position: relative;
     margin-top: 1.5rem;
-    text-align: left;
+    text-align: right;
   }
 }
 
