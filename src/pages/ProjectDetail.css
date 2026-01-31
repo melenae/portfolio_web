@@ -783,9 +783,7 @@
   .font-card {
     min-height: 240px;
     padding: 16px;
-  }
-
-  .font-card-label {
+  }  .font-card-label {
     font-size: 48px;
   }
 }
